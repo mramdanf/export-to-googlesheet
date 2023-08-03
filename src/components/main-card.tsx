@@ -1,3 +1,4 @@
+import ConnectToGoogleAccount from './connect-to-google-account';
 import DeleteIcon from './icons/delete-icon';
 import GSheetIcon from './icons/gsheet-icon';
 import classes from './main-card.module.css';
@@ -12,6 +13,7 @@ function MainCard() {
           <DeleteIcon />
         </div>
       </div>
+      <ConnectToGoogleAccount />
     </div>
   );
 }

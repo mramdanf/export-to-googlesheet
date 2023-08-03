@@ -1,5 +1,20 @@
+import GoogleLogoIcon from './icons/google-logo-icon';
+
+import classes from './connect-to-google-account.module.css';
+
 function ConnectToGoogleAccount() {
-  return <p>Connect to google account</p>;
+  return (
+    <div className={classes.wrapper}>
+      <div className={classes.description}>
+        <GoogleLogoIcon />
+        <div className={classes.descriptionText}>
+          <p>Connect Google Account</p>
+          <p>Please connect Google Account to use this block</p>
+        </div>
+      </div>
+      <button>Connect</button>
+    </div>
+  );
 }
 
 export default ConnectToGoogleAccount;

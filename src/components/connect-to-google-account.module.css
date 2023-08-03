@@ -1,0 +1,21 @@
+.description {
+  display: flex;
+  margin-bottom: 20px;;
+}
+
+.descriptionText {
+  margin-left: 10px;
+}
+
+.descriptionText p:first-child {
+  margin-bottom: 5px;;
+}
+
+.descriptionText p:last-child {
+  color: #aeaeae;
+  font-size: small;
+}
+
+.wrapper {
+  padding: 30px;
+}
