@@ -15,3 +15,7 @@
 .cardHeaderText {
   margin-left: 15px;
 }
+
+.cardHeaderDeleteIcon {
+  margin-left: auto;
+}

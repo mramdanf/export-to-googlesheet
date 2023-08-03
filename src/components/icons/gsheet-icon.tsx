@@ -7,7 +7,7 @@ function GSheetIcon() {
     width: 19 - minus
   };
   return (
-    <div className={classes.iconWrapper}>
+    <div className={classes.wrapper}>
       <svg
         width={dimension.width}
         height={dimension.height}
