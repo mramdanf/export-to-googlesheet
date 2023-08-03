@@ -1,7 +1,11 @@
+import MainCard from '@/components/main-card';
+
+import classes from './home.module.css';
+
 export default function Home() {
   return (
-    <>
-      <p>hello</p>
-    </>
+    <div className={classes.home}>
+      <MainCard />
+    </div>
   );
 }
