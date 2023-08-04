@@ -1,9 +1,35 @@
 .select {
+  font-size: 10pt;
+  position: relative;
+}
+
+.select .triggerDropdown {
+  display: flex;
   padding: 10px;
   border-radius: 5px;
   font-weight: 400;
-  
-  border: 0;
-  outline: 1px solid #e1e1e1;
-  border-right: 16px solid transparent;
+  border: 1px solid #e1e1e1;
+}
+
+.select .triggerDropdown .downIcon {
+  margin-left: auto;
+}
+
+.select .optionsOverlay {
+  padding: 3px;
+  border-radius: 5px;
+  margin-top: 5px;
+  z-index: 9999999;
+  border: 1px solid #e1e1e1;
+  background-color: white;
+  position: absolute;
+  width: 100%;
+}
+
+.select .optionsOverlay ul {
+  list-style: none;
+}
+
+.select .optionsOverlay ul li {
+  padding: 10px 8px;
 }

@@ -8,7 +8,14 @@ function FileChooser() {
     <div className={classes.wrapper}>
       <div className={classes.formItem}>
         <label>Google Account</label>
-        <Select />
+        <Select
+          type="single"
+          options={[
+            { value: 'defaul', label: 'Account Name' },
+            { value: 'john.doe@gmail.com', label: 'John Doe' },
+            { value: 'marisol@gmail.com', label: 'Marisol' }
+          ]}
+        />
       </div>
       <div className={classes.formItem}>
         <label>File</label>
