@@ -1,0 +1,28 @@
+.buttonDefault {
+  background-color: #2183f6;
+  border-radius: 5px;
+  color: white;
+  padding: 8px 10px;
+  border: none;
+}
+
+.button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px 0;
+  border-radius: 50px;
+  border: none;
+}
+
+.buttonPrimary {
+  background-color: #2183f6;
+  border-radius: 5px;
+  color: white;
+  padding: 8px 10px;
+  border: none;
+}
+
+.buttonPrimary:hover,
+.buttonDefault:hover {
+  cursor: pointer;
+}
