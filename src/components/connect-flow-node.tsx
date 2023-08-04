@@ -9,7 +9,7 @@ type ConnectFlowNodeProps = {
 
 function ConnectFlowNode(props: ConnectFlowNodeProps) {
   return (
-    <Button className={classes.button}>
+    <Button className={classes.button} onClick={() => props.onSetCurrContent('file-chooser')}>
       <div className={classes.buttonContent}>
         <DatabaseIcon /> Connect Flow Node to Import to Google Sheets
       </div>

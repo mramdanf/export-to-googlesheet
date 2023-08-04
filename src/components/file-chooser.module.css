@@ -1,0 +1,13 @@
+.wrapper {
+  margin-top: 10px;
+}
+
+.formItem {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;;
+}
+
+.formItem label {
+  margin-bottom: 10px;
+}
