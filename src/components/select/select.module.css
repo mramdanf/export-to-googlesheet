@@ -1,6 +1,7 @@
 .select {
   font-size: 10pt;
   position: relative;
+  cursor: pointer;
 }
 
 .select .triggerDropdown {
@@ -22,7 +23,6 @@
 
 .select .optionsOverlay {
   width: 100%;
-  padding: 8px;
   border-radius: 5px;
   margin-top: 10px;
   border: 1px solid #e1e1e1;
@@ -32,10 +32,21 @@
   z-index: 9999999;
 }
 
+.select .optionsOverlay .inputWrapper {
+  margin: 10px;
+}
+
 .select .optionsOverlay ul {
   list-style: none;
 }
 
 .select .optionsOverlay ul li {
-  padding: 10px 8px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.select .optionsOverlay ul li:hover {
+  background-color: #e1e1e1;
 }

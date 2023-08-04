@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import cx from 'classnames';
+import { SelectOption } from '@/types/app';
 import classes from './select.module.css';
 import DownIcon from '../icons/down-icon';
 import Input from '../input/input';
-
-type SelectOption = {
-  value: string;
-  label: string;
-};
+import useDetectOutsideClick from '@/hooks/useDetectOutsideClick';
+import { deselectOption, isOptionSelected } from './select.utils';
+import CheckIcon from '../icons/check-icon';
 
 interface SelectProps
   extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
@@ -19,33 +18,64 @@ interface SelectProps
 function Select({ options, type, className, triggerDropdownClass, ...rest }: SelectProps) {
   const [showOption, setShowOption] = useState<boolean>(false);
   const selectOptions = options && Array.isArray(options) ? options : [];
-  const [selectedOption, setSelectedOption] = useState<SelectOption>(
-    selectOptions.length ? selectOptions[0] : ({} as SelectOption)
+  const [selectedOptions, setSelectedOptions] = useState<SelectOption[]>(
+    selectOptions ? [selectOptions[0]] : []
+  );
+  const optionOverlayRef = useRef<HTMLDivElement>(null);
+
+  const outSideClickCallback = useCallback(() => {
+    setShowOption(false);
+  }, []);
+  useDetectOutsideClick(optionOverlayRef, outSideClickCallback);
+
+  const handleOptionSelected = useCallback(
+    (option: SelectOption) => {
+      if (type === 'single') {
+        setSelectedOptions([option]);
+        setShowOption(false);
+        return;
+      }
+
+      const optionExist = isOptionSelected(selectedOptions, option);
+
+      if (optionExist && selectedOptions.length === 1) {
+        return;
+      }
+
+      if (optionExist && selectedOptions.length > 1) {
+        setSelectedOptions([...deselectOption(selectedOptions, option)]);
+        return;
+      }
+
+      setSelectedOptions([...selectedOptions, option]);
+    },
+    [selectedOptions, type, setSelectedOptions]
   );
 
-  function handleOptionSelected(option: SelectOption) {
-    setSelectedOption(option);
-
-    if (type === 'single') {
-      setShowOption(false);
-    }
-  }
+  const selectOptionsWithChecklist = useMemo(() => {
+    const optionsData = options && Array.isArray(options) ? options : [];
+    return optionsData.map((selectOption) => ({
+      ...selectOption,
+      selected: isOptionSelected(selectedOptions, selectOption)
+    }));
+  }, [options, selectedOptions]);
 
   return (
     <div className={classes.select} {...rest}>
       <div
         className={cx(classes.triggerDropdown, triggerDropdownClass)}
         onClick={() => setShowOption(!showOption)}>
-        <span>{selectedOption.label}</span>
+        <span>{selectedOptions.map((option) => option.label).join(',')}</span>
         <DownIcon className={classes.downIcon} />
       </div>
       {showOption && (
-        <div className={cx(classes.optionsOverlay)}>
-          <Input searchable />
+        <div className={classes.optionsOverlay} ref={optionOverlayRef}>
+          <Input wrapperClass={classes.inputWrapper} searchable />
           <ul>
-            {selectOptions.map((option) => (
+            {selectOptionsWithChecklist.map((option) => (
               <li key={option.value} onClick={() => handleOptionSelected(option)}>
-                {option.label}
+                <span>{option.label}</span>
+                {option.selected && <CheckIcon />}
               </li>
             ))}
           </ul>
