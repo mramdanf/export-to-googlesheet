@@ -1,0 +1,21 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  border: 1px;
+  border: 1px solid #e1e1e1;
+  padding: 10px 5px 10px 10px;
+  border-radius: 5px;
+}
+
+.wrapper svg {
+  margin-right: 8px;
+}
+
+.wrapper input {
+  width: 100%;
+  border: none;
+}
+
+.wrapper input[type=text]:focus {
+  outline: none !important;
+}

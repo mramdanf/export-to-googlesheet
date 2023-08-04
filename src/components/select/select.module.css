@@ -5,10 +5,15 @@
 
 .select .triggerDropdown {
   display: flex;
+  align-items: center;
   padding: 10px;
   border-radius: 5px;
   font-weight: 400;
   border: 1px solid #e1e1e1;
+}
+
+.select .triggerDropdown span {
+  margin-right: 5px;
 }
 
 .select .triggerDropdown .downIcon {
@@ -16,14 +21,15 @@
 }
 
 .select .optionsOverlay {
-  padding: 3px;
+  width: 100%;
+  padding: 8px;
   border-radius: 5px;
-  margin-top: 5px;
-  z-index: 9999999;
+  margin-top: 10px;
   border: 1px solid #e1e1e1;
   background-color: white;
   position: absolute;
-  width: 100%;
+  min-width: 150px;
+  z-index: 9999999;
 }
 
 .select .optionsOverlay ul {
