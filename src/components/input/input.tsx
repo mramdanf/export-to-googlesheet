@@ -14,7 +14,7 @@ function Input({ searchable, wrapperClass, ...rest }: InputProps) {
     return (
       <div className={cx(classes.wrapper, wrapperClass)}>
         <SearchIcon />
-        <input type="text" placeholder="Search" />
+        <input type="text" placeholder="Search" {...rest} />
       </div>
     );
   }

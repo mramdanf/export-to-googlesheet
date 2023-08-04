@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { ChangeEvent, useCallback, useMemo, useRef, useState } from 'react';
 import cx from 'classnames';
 import { SelectOption } from '@/types/app';
 import classes from './select.module.css';
@@ -13,13 +13,23 @@ interface SelectProps
   options: Array<SelectOption>;
   type: 'single' | 'multiple';
   triggerDropdownClass?: string;
+  searchable?: boolean;
 }
 
-function Select({ options, type, className, triggerDropdownClass, ...rest }: SelectProps) {
+function Select({
+  options,
+  type,
+  className,
+  triggerDropdownClass,
+  searchable,
+  ...rest
+}: SelectProps) {
   const [showOption, setShowOption] = useState<boolean>(false);
-  const selectOptions = options && Array.isArray(options) ? options : [];
   const [selectedOptions, setSelectedOptions] = useState<SelectOption[]>(
-    selectOptions ? [selectOptions[0]] : []
+    options?.length ? [options[0]] : []
+  );
+  const [filteredOptions, setFilteredOptions] = useState<SelectOption[]>(
+    options?.length ? options : []
   );
   const optionOverlayRef = useRef<HTMLDivElement>(null);
 
@@ -43,7 +53,7 @@ function Select({ options, type, className, triggerDropdownClass, ...rest }: Sel
       }
 
       if (optionExist && selectedOptions.length > 1) {
-        setSelectedOptions([...deselectOption(selectedOptions, option)]);
+        setSelectedOptions(deselectOption(selectedOptions, option));
         return;
       }
 
@@ -52,13 +62,22 @@ function Select({ options, type, className, triggerDropdownClass, ...rest }: Sel
     [selectedOptions, type, setSelectedOptions]
   );
 
+  const handleOnSearch = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const keywords = e.target.value;
+      setFilteredOptions(
+        options?.filter((option) => option.label.toLowerCase().includes(keywords.toLowerCase()))
+      );
+    },
+    [options]
+  );
+
   const selectOptionsWithChecklist = useMemo(() => {
-    const optionsData = options && Array.isArray(options) ? options : [];
-    return optionsData.map((selectOption) => ({
+    return filteredOptions.map((selectOption) => ({
       ...selectOption,
       selected: isOptionSelected(selectedOptions, selectOption)
     }));
-  }, [options, selectedOptions]);
+  }, [filteredOptions, selectedOptions]);
 
   return (
     <div className={classes.select} {...rest}>
@@ -70,7 +89,9 @@ function Select({ options, type, className, triggerDropdownClass, ...rest }: Sel
       </div>
       {showOption && (
         <div className={classes.optionsOverlay} ref={optionOverlayRef}>
-          <Input wrapperClass={classes.inputWrapper} searchable />
+          {searchable && (
+            <Input wrapperClass={classes.inputWrapper} searchable onChange={handleOnSearch} />
+          )}
           <ul>
             {selectOptionsWithChecklist.map((option) => (
               <li key={option.value} onClick={() => handleOptionSelected(option)}>

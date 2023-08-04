@@ -16,15 +16,20 @@ function SheetTabSelector({ file, onSetCurrentFile }: SheetTabSelectorProps) {
       <GSheetIcon />
       <p>{file.name}</p>
       <div className={classes.buttonWrapper}>
-        {/* <Button className={classes.tabSelect}>
-          <span>Tab 1</span> <DownIcon />
-        </Button> */}
         <Select
           triggerDropdownClass={classes.tabSelect}
           type="multiple"
+          searchable
           options={[
             { value: 'tab-1', label: 'Tab 1' },
-            { value: 'tab-2', label: 'Tab 2' }
+            { value: 'tab-2', label: 'Tab 2' },
+            { value: 'tab-3', label: 'Tab 3' },
+            { value: 'tab-4', label: 'Tab 4' },
+            { value: 'tab-5', label: 'Tab 5' },
+            { value: 'expense', label: 'Expense' },
+            { value: 'incode', label: 'Income' },
+            { value: 'cash-in', label: 'Cash in' },
+            { value: 'cash-out', label: 'Cash out' }
           ]}
         />
         <Button className={classes.removeFileButton} onClick={() => onSetCurrentFile(undefined)}>
