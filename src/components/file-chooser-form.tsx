@@ -1,6 +1,7 @@
 import Select from './select/select';
 
-import classes from './file-chooser.module.css';
+import classes from './file-chooser-form.module.css';
+import SheetPicker from './sheet-picker/sheet-picker';
 
 function FileChooser() {
   return (
@@ -11,7 +12,7 @@ function FileChooser() {
       </div>
       <div className={classes.formItem}>
         <label>File</label>
-        <Select />
+        <SheetPicker />
       </div>
     </div>
   );

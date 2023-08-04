@@ -5,14 +5,16 @@ import GSheetIcon from './icons/gsheet-icon';
 import classes from './main-card.module.css';
 import ConnectFlowNode from './connect-flow-node';
 import { Content } from '@/types/app';
-import FileChooser from './file-chooser';
+import FileChooser from './file-chooser-form';
 
 function MainCard() {
   const [currContent, setCurrContent] = useState<Content>('connect-google');
   return (
     <div className={classes.card}>
       <div className={classes.cardHeader}>
-        <GSheetIcon />
+        <div className={classes.gsheetIcon}>
+          <GSheetIcon />
+        </div>
         <p className={classes.cardHeaderText}>Export to Google Sheets</p>
         <div className={classes.cardHeaderDeleteIcon}>
           <DeleteIcon />

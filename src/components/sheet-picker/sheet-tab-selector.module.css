@@ -1,0 +1,20 @@
+.tabSelector {
+  border: 1px solid #e1e1e1;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 4px 10px;
+}
+
+.tabSelector p {
+  margin-left: 8px;
+  font-size: 10pt;
+}
+
+.removeFileButton {
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+}

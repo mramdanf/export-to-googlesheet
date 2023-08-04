@@ -12,6 +12,12 @@
   align-items: center;
 }
 
+.gsheetIcon {
+  padding: 2px 10px;
+  background-color: #f0fbf0;
+  border-radius: 5px;
+}
+
 .cardHeaderText {
   margin-left: 15px;
 }
