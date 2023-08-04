@@ -2,9 +2,10 @@
   border: 1px solid #e1e1e1;
   padding: 10px;
   border-radius: 5px;
+  padding: 4px 10px;
   display: flex;
   align-items: center;
-  padding: 4px 10px;
+  margin-bottom: 20px;;
 }
 
 .tabSelector p {
@@ -12,9 +13,36 @@
   font-size: 10pt;
 }
 
-.removeFileButton {
+.buttonWrapper {
   margin-left: auto;
-  background: none;
+  display: flex;
+}
+
+.tabSelect,
+.removeFileButton {
   border: none;
   cursor: pointer;
+}
+
+.tabSelect {
+  margin-right: 8px;
+  padding: 8px 15px;
+  border-radius: 50px;
+  font-size: 9pt;
+  color: grey;
+  display: flex;
+  align-items: center;
+}
+
+.tabSelect span {
+  margin-right: 5px;
+}
+
+.tabSelect svg {
+  width: 0.7em;
+  height: 0.7em;
+}
+
+.removeFileButton {
+  background: none;
 }
