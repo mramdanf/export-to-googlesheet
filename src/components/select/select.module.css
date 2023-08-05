@@ -12,8 +12,9 @@
   border: 1px solid #e1e1e1;
 }
 
-.select .triggerDropdown span {
+.select .triggerDropdown .selectedOptions {
   margin-right: 5px;
+  max-width: 100px;
 }
 
 .select .triggerDropdown .downIcon {

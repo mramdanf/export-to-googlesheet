@@ -119,7 +119,9 @@ function Select({
         className={cx(classes.triggerDropdown, triggerDropdownClass)}
         onClick={() => setShowOption(!showOption)}
         ref={triggerDropdownRef}>
-        <span>{selectedOptions.map((option) => option.label).join(', ')}</span>
+        <span className={cx('truncateElipsis', classes.selectedOptions)}>
+          {selectedOptions.map((option) => option.label).join(', ')}
+        </span>
         <DownIcon className={classes.downIcon} />
       </div>
       {showOption && (

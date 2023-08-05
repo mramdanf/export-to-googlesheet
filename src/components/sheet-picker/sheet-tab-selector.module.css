@@ -7,9 +7,10 @@
   align-items: center;
 }
 
-.tabSelector p {
+.tabSelector .fileName {
   margin-left: 8px;
   font-size: 10pt;
+  max-width: 15em;
 }
 
 .tabSelector .buttonWrapper {
