@@ -5,11 +5,22 @@ import DeleteIcon from './icons/delete-icon';
 import GSheetIcon from './icons/gsheet-icon';
 import ConnectFlowNode from './connect-flow-node';
 import FileChooser from './file-chooser-form';
-import classes from './main-card.module.css';
 import Button from './button/button';
+import { removeLastExportedTime } from './main-card.utils';
+
+import classes from './main-card.module.css';
 
 function MainCard() {
   const [currContent, setCurrContent] = useState<Content>('connect-google');
+
+  function handleDeleteBlock() {
+    if (currContent === 'connect-google') {
+      return;
+    }
+    setCurrContent('connect-flow-node');
+    removeLastExportedTime();
+  }
+
   return (
     <div className={classes.card}>
       <div className={classes.header}>
@@ -17,7 +28,7 @@ function MainCard() {
           <GSheetIcon />
         </div>
         <p className={classes.headerText}>Export to Google Sheets</p>
-        <Button className={classes.deleteButton} onClick={() => setCurrContent('connect-google')}>
+        <Button className={classes.deleteButton} onClick={handleDeleteBlock}>
           <DeleteIcon />
         </Button>
       </div>

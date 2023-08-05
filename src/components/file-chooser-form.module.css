@@ -2,12 +2,26 @@
   margin-top: 10px;
 }
 
-.formItem {
+.wrapper button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 8px;
+}
+
+.wrapper .lastExportedTime {
+  text-align: center;
+  font-size: 10pt;
+  color: #828181;
+  font-weight: bold;
+}
+
+.wrapper .formItem {
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;;
 }
 
-.formItem label {
+.wrapper .formItem label {
   margin-bottom: 10px;
 }
