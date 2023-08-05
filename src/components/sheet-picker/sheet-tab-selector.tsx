@@ -23,13 +23,7 @@ function SheetTabSelector({ file, onSetCurrentFile }: SheetTabSelectorProps) {
           options={[
             { value: 'tab-1', label: 'Tab 1' },
             { value: 'tab-2', label: 'Tab 2' },
-            { value: 'tab-3', label: 'Tab 3' },
-            { value: 'tab-4', label: 'Tab 4' },
-            { value: 'tab-5', label: 'Tab 5' },
-            { value: 'expense', label: 'Expense' },
-            { value: 'incode', label: 'Income' },
-            { value: 'cash-in', label: 'Cash in' },
-            { value: 'cash-out', label: 'Cash out' }
+            { value: 'tab-3', label: 'Tab 3' }
           ]}
         />
         <Button className={classes.removeFileButton} onClick={() => onSetCurrentFile(undefined)}>

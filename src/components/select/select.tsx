@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useMemo, useRef, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import cx from 'classnames';
 import { SelectOption } from '@/types/app';
 import classes from './select.module.css';
@@ -17,6 +17,8 @@ interface SelectProps
   onSelectedOption?: (selectedOption: SelectOption) => void;
 }
 
+const OVERLAY_MIN_WIDTH = 180;
+
 function Select({
   options,
   type,
@@ -33,7 +35,9 @@ function Select({
   const [filteredOptions, setFilteredOptions] = useState<SelectOption[]>(
     options?.length ? options : []
   );
+  const [overlayWidth, setOverlayWidth] = useState<number>(OVERLAY_MIN_WIDTH);
   const optionOverlayRef = useRef<HTMLDivElement>(null);
+  const triggerDropdownRef = useRef<HTMLDivElement>(null);
 
   const outSideClickCallback = useCallback(() => {
     setShowOption(false);
@@ -79,6 +83,15 @@ function Select({
     [options]
   );
 
+  useEffect(() => {
+    const triggerDropdownWidth = triggerDropdownRef.current?.offsetWidth || 0;
+    if (triggerDropdownWidth <= OVERLAY_MIN_WIDTH) {
+      return;
+    }
+
+    setOverlayWidth(triggerDropdownWidth);
+  }, [triggerDropdownRef]);
+
   const selectOptionsWithChecklist = useMemo(() => {
     return filteredOptions.map((selectOption) => ({
       ...selectOption,
@@ -90,12 +103,16 @@ function Select({
     <div className={classes.select} {...rest}>
       <div
         className={cx(classes.triggerDropdown, triggerDropdownClass)}
-        onClick={() => setShowOption(!showOption)}>
+        onClick={() => setShowOption(!showOption)}
+        ref={triggerDropdownRef}>
         <span>{selectedOptions.map((option) => option.label).join(', ')}</span>
         <DownIcon className={classes.downIcon} />
       </div>
       {showOption && (
-        <div className={classes.optionsOverlay} ref={optionOverlayRef}>
+        <div
+          className={classes.optionsOverlay}
+          ref={optionOverlayRef}
+          style={{ width: overlayWidth }}>
           {searchable && (
             <Input wrapperClass={classes.inputWrapper} searchable onChange={handleOnSearch} />
           )}
