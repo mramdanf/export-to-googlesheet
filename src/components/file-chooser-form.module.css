@@ -2,7 +2,7 @@
   margin-top: 10px;
 }
 
-.wrapper button {
+.wrapper .exportButton {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
@@ -19,7 +19,7 @@
 .wrapper .formItem {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;;
+  margin-bottom: 15px;
 }
 
 .wrapper .formItem label {

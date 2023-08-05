@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
+import { SelectOption } from '@/types/app';
 import Select from './select/select';
 import SheetPicker from './sheet-picker/sheet-picker';
 import Button from './button/button';
 import { getLastExportedTime, saveLastExportedTime } from './main-card.utils';
 
 import classes from './file-chooser-form.module.css';
-import { SelectOption } from '@/types/app';
 
 function FileChooser() {
   const [lastExport, setLastExport] = useState<string>('');
@@ -49,7 +49,7 @@ function FileChooser() {
         </div>
       )}
       {selectedFile && (
-        <Button category="primary" onClick={handleOnSetLastExport}>
+        <Button className={classes.exportButton} category="primary" onClick={handleOnSetLastExport}>
           Export
         </Button>
       )}
