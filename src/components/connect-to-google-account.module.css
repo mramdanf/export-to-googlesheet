@@ -1,17 +1,29 @@
 .description {
   display: flex;
   margin-bottom: 20px;
+  align-items: center;
 }
 
-.descriptionText {
+.description .googleLogoWrapper {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.description .googleLogoWrapper .googleLogo {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.description .descriptionText {
   margin-left: 10px;
 }
 
-.descriptionText p:first-child {
+.description .descriptionText p:first-child {
   margin-bottom: 5px;;
 }
 
-.descriptionText p:last-child {
+.description .descriptionText p:last-child {
   color: #aeaeae;
   font-size: small;
 }
