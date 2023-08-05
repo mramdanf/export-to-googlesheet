@@ -3,7 +3,7 @@ import { SelectOption } from '@/types/app';
 import Select from './select/select';
 import SheetPicker from './sheet-picker/sheet-picker';
 import Button from './button/button';
-import { getLastExportedTime, saveLastExportedTime } from './main-card.utils';
+import { getLastExportedTime, saveLastExportedTime } from '../utils/localstorage';
 import { useFileChooser } from '@/store/fileChooserContext';
 
 import classes from './file-chooser-form.module.css';

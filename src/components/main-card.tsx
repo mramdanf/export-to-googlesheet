@@ -6,7 +6,6 @@ import GSheetIcon from './icons/gsheet-icon';
 import ConnectFlowNode from './connect-flow-node';
 import FileChooser from './file-chooser-form';
 import Button from './button/button';
-import { removeLastExportedTime } from './main-card.utils';
 
 import classes from './main-card.module.css';
 
@@ -18,7 +17,6 @@ function MainCard() {
       return;
     }
     setCurrContent('connect-flow-node');
-    removeLastExportedTime();
   }
 
   return (
