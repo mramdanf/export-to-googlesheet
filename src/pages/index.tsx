@@ -5,7 +5,10 @@ import classes from './home.module.css';
 export default function Home() {
   return (
     <div className={classes.home}>
-      <MainCard />
+      <div className={classes.content}>
+        <h1>Output/Export to Google Sheets</h1>
+        <MainCard />
+      </div>
     </div>
   );
 }
