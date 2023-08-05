@@ -4,13 +4,15 @@ import Select from './select/select';
 import SheetPicker from './sheet-picker/sheet-picker';
 import Button from './button/button';
 import { getLastExportedTime, saveLastExportedTime } from './main-card.utils';
+import { useFileChooser } from '@/store/fileChooserContext';
 
 import classes from './file-chooser-form.module.css';
 
 function FileChooser() {
   const [lastExport, setLastExport] = useState<string>('');
   const [selectedAccount, setSelectedAccount] = useState<SelectOption>();
-  const [selectedFile, setSelectedFile] = useState<File>();
+
+  const { disableExport, selectedFile } = useFileChooser();
 
   function handleOnSetLastExport() {
     saveLastExportedTime();
@@ -45,11 +47,15 @@ function FileChooser() {
       {selectedAccount && (
         <div className={classes.formItem}>
           <label>File</label>
-          <SheetPicker selectedFile={selectedFile} onSetSelectedFile={setSelectedFile} />
+          <SheetPicker />
         </div>
       )}
       {selectedFile && (
-        <Button className={classes.exportButton} category="primary" onClick={handleOnSetLastExport}>
+        <Button
+          className={classes.exportButton}
+          category="primary"
+          disabled={disableExport}
+          onClick={handleOnSetLastExport}>
           Export
         </Button>
       )}

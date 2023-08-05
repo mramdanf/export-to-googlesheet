@@ -1,3 +1,4 @@
+import { useFileChooser } from '@/store/fileChooserContext';
 import Button from '../button/button';
 import CloseIcon from '../icons/close-icon';
 import GSheetIcon from '../icons/gsheet-icon';
@@ -5,16 +6,12 @@ import Select from '../select/select';
 
 import classes from './sheet-tab-selector.module.css';
 
-type SheetTabSelectorProps = {
-  file: File;
-  onSetCurrentFile: (file?: File) => void;
-};
-
-function SheetTabSelector({ file, onSetCurrentFile }: SheetTabSelectorProps) {
+function SheetTabSelector() {
+  const { selectedFile, setSelectedFile, setDisableExport } = useFileChooser();
   return (
     <div className={classes.tabSelector}>
       <GSheetIcon />
-      <p>{file.name}</p>
+      <p>{selectedFile?.name}</p>
       <div className={classes.buttonWrapper}>
         <Select
           triggerDropdownClass={classes.tabSelect}
@@ -25,8 +22,9 @@ function SheetTabSelector({ file, onSetCurrentFile }: SheetTabSelectorProps) {
             { value: 'tab-2', label: 'Tab 2' },
             { value: 'tab-3', label: 'Tab 3' }
           ]}
+          onDropdownVisibleChange={(open) => setDisableExport(open)}
         />
-        <Button className={classes.removeFileButton} onClick={() => onSetCurrentFile(undefined)}>
+        <Button className={classes.removeFileButton} onClick={() => setSelectedFile(undefined)}>
           <CloseIcon />
         </Button>
       </div>

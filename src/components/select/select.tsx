@@ -15,6 +15,7 @@ interface SelectProps
   triggerDropdownClass?: string;
   searchable?: boolean;
   onSelectedOption?: (selectedOption: SelectOption) => void;
+  onDropdownVisibleChange?: (open: boolean) => void;
 }
 
 const OVERLAY_MIN_WIDTH = 180;
@@ -26,6 +27,7 @@ function Select({
   triggerDropdownClass,
   searchable,
   onSelectedOption,
+  onDropdownVisibleChange,
   ...rest
 }: SelectProps) {
   const [showOption, setShowOption] = useState<boolean>(false);
@@ -91,6 +93,12 @@ function Select({
 
     setOverlayWidth(triggerDropdownWidth);
   }, [triggerDropdownRef]);
+
+  useEffect(() => {
+    if (onDropdownVisibleChange) {
+      onDropdownVisibleChange(showOption);
+    }
+  }, [showOption, onDropdownVisibleChange]);
 
   const selectOptionsWithChecklist = useMemo(() => {
     return filteredOptions.map((selectOption) => ({

@@ -2,17 +2,15 @@ import { ChangeEvent } from 'react';
 import SheetTabSelector from './sheet-tab-selector';
 
 import classes from './sheet-picker.module.css';
+import { useFileChooser } from '@/store/fileChooserContext';
 
-type SheetPickerProps = {
-  selectedFile?: File;
-  onSetSelectedFile: (file?: File) => void;
-};
+function SheetPicker() {
+  const { setSelectedFile, selectedFile } = useFileChooser();
 
-function SheetPicker({ selectedFile, onSetSelectedFile }: SheetPickerProps) {
   function handleOnChangeFileInput(event: ChangeEvent<HTMLInputElement>) {
     const { files } = event.target;
     const selectedFiles = files as FileList;
-    onSetSelectedFile(selectedFiles?.[0]);
+    setSelectedFile(selectedFiles?.[0]);
   }
 
   return (
@@ -20,9 +18,7 @@ function SheetPicker({ selectedFile, onSetSelectedFile }: SheetPickerProps) {
       {!selectedFile && (
         <input className={classes.inputFile} type="file" onChange={handleOnChangeFileInput} />
       )}
-      {selectedFile && (
-        <SheetTabSelector file={selectedFile} onSetCurrentFile={onSetSelectedFile} />
-      )}
+      {selectedFile && <SheetTabSelector />}
     </>
   );
 }
