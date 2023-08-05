@@ -100,6 +100,12 @@ function Select({
     }
   }, [showOption, onDropdownVisibleChange]);
 
+  useEffect(() => {
+    return () => {
+      setFilteredOptions(options?.length ? options : []);
+    };
+  }, [options]);
+
   const selectOptionsWithChecklist = useMemo(() => {
     return filteredOptions.map((selectOption) => ({
       ...selectOption,
