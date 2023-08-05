@@ -1,24 +1,25 @@
 import { useState } from 'react';
 import ConnectToGoogleAccount from './connect-to-google-account';
+import { Content } from '@/types/app';
 import DeleteIcon from './icons/delete-icon';
 import GSheetIcon from './icons/gsheet-icon';
-import classes from './main-card.module.css';
 import ConnectFlowNode from './connect-flow-node';
-import { Content } from '@/types/app';
 import FileChooser from './file-chooser-form';
+import classes from './main-card.module.css';
+import Button from './button/button';
 
 function MainCard() {
   const [currContent, setCurrContent] = useState<Content>('connect-google');
   return (
     <div className={classes.card}>
-      <div className={classes.cardHeader}>
+      <div className={classes.header}>
         <div className={classes.gsheetIcon}>
           <GSheetIcon />
         </div>
-        <p className={classes.cardHeaderText}>Export to Google Sheets</p>
-        <div className={classes.cardHeaderDeleteIcon}>
+        <p className={classes.headerText}>Export to Google Sheets</p>
+        <Button className={classes.deleteButton} onClick={() => setCurrContent('connect-google')}>
           <DeleteIcon />
-        </div>
+        </Button>
       </div>
       {currContent === 'connect-google' && (
         <ConnectToGoogleAccount onSetCurrContent={setCurrContent} />

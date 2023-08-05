@@ -84,7 +84,7 @@ function Select({
       <div
         className={cx(classes.triggerDropdown, triggerDropdownClass)}
         onClick={() => setShowOption(!showOption)}>
-        <span>{selectedOptions.map((option) => option.label).join(',')}</span>
+        <span>{selectedOptions.map((option) => option.label).join(', ')}</span>
         <DownIcon className={classes.downIcon} />
       </div>
       {showOption && (

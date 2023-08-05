@@ -10,16 +10,14 @@ interface CustomButtonProps
   category?: 'primary' | 'default';
 }
 
-function Button({ children, category, ...rest }: CustomButtonProps) {
+function Button({ children, category, className, ...rest }: CustomButtonProps) {
+  const btnClasses = cx({
+    [classes.buttonPrimary]: category === 'primary',
+    [classes.buttonDefault]: !category || category === 'default',
+    [className || '']: !!className
+  });
   return (
-    <button
-      className={cx(
-        {
-          [classes.buttonPrimary]: category === 'primary'
-        },
-        rest.className
-      )}
-      {...rest}>
+    <button className={btnClasses} {...rest}>
       {children}
     </button>
   );

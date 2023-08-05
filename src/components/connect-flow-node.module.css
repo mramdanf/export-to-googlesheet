@@ -3,14 +3,13 @@
   margin-top: 20px;
   padding: 10px 0;
   border-radius: 50px;
-  border: none;
 }
 
 .button:hover {
   cursor: pointer;
 }
 
-.buttonContent {
+.button .buttonContent {
   display: flex;
   align-items: center;
   justify-content: center;

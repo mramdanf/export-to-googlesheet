@@ -7,21 +7,27 @@
   height: 300px;
 }
 
-.cardHeader {
+.card .header {
   display: flex;
   align-items: center;
 }
 
-.gsheetIcon {
+.card .header .gsheetIcon {
   padding: 2px 10px;
   background-color: #f0fbf0;
   border-radius: 5px;
 }
 
-.cardHeaderText {
+.card .header .headerText {
   margin-left: 15px;
 }
 
-.cardHeaderDeleteIcon {
+.card .header .deleteButton {
   margin-left: auto;
+  padding: 7px 9px;
+}
+
+.card .header .deleteButton svg {
+  width: 1.2em;
+  height: 1.2em;
 }
