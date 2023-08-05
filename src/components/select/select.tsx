@@ -14,6 +14,7 @@ interface SelectProps
   type: 'single' | 'multiple';
   triggerDropdownClass?: string;
   searchable?: boolean;
+  onSelectedOption?: (selectedOption: SelectOption) => void;
 }
 
 function Select({
@@ -22,6 +23,7 @@ function Select({
   className,
   triggerDropdownClass,
   searchable,
+  onSelectedOption,
   ...rest
 }: SelectProps) {
   const [showOption, setShowOption] = useState<boolean>(false);
@@ -43,6 +45,11 @@ function Select({
       if (type === 'single') {
         setSelectedOptions([option]);
         setShowOption(false);
+
+        if (onSelectedOption) {
+          onSelectedOption(option);
+        }
+
         return;
       }
 
@@ -59,7 +66,7 @@ function Select({
 
       setSelectedOptions([...selectedOptions, option]);
     },
-    [selectedOptions, type, setSelectedOptions]
+    [selectedOptions, type, setSelectedOptions, onSelectedOption]
   );
 
   const handleOnSearch = useCallback(
