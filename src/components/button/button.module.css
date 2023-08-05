@@ -1,7 +1,14 @@
+.buttonDefault,
+.buttonPrimary {
+  opacity: 1;
+  transition: 0.3s;
+}
+
 .buttonDefault {
   border: none; 
   border-radius: 5px;
   padding: 8px 10px;
+  background-color: #f0f0f0;
 }
 
 .buttonPrimary {
@@ -15,6 +22,7 @@
 .buttonPrimary:hover,
 .buttonDefault:hover {
   cursor: pointer;
+  opacity: 0.6;
 }
 
 .buttonPrimary:disabled {
